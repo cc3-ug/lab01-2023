@@ -94,7 +94,7 @@ def check_bitops():
         elif wrong != 0:
             return (round(grade), utils.incomplete('some tests failed...'), '')
         else:
-            return (40, utils.passed(), '')
+            return (35, utils.passed(), '')
     except subprocess.TimeoutExpired:
         return (0, utils.failed('TIMEOUT'), '')
     except Exception as e:
