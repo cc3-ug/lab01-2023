@@ -84,11 +84,13 @@ def check_bitops():
             exp = exp.strip()
             out = out.strip()
             if exp == out:
-                grade += 40 / 19
+                grade += 35 / 19
             else:
                 wrong += 1
         if wrong == 19:
             return (0, utils.failed('all tests failed...'), '')
+        elif wrong == 15:
+            return (0, utils.failed('you only got base cases right...'), '')
         elif wrong != 0:
             return (round(grade), utils.incomplete('some tests failed...'), '')
         else:
@@ -129,7 +131,51 @@ def check_lfsr():
                 return (0, utils.failed('Please use the correct indexes...'), '')
             if line1 != line2:
                 return (0, utils.failed('LFSR not working correctly...'), '')
-        return (40, utils.passed(), '')
+        return (30, utils.passed(), '')
+    except subprocess.TimeoutExpired:
+        return (0, utils.failed('TIMEOUT'), '')
+    except Exception as e:
+        print(e)
+        return (0, utils.failed('memory limit exceeded'), '')
+
+
+# checks concat_bits
+def check_concatbits():
+    try:
+        # compile
+        task = utils.make(target='concat_bits')
+        if task.returncode != 0:
+            return (0, utils.failed('compilation error'), task.stderr.decode().strip())
+        # run tests
+        task = utils.execute(cmd=['./concat_bits'], timeout=5)
+        if task.returncode != 0:
+            return (0, utils.failed('runtime error'), task.stderr.decode().strip())
+        if task.returncode != 0:
+            return (0, utils.failed('runtime error'), task.stderr.decode().strip())
+        
+        # Output
+        output = task.stdout.decode().strip().split('\n')
+
+        f = open('ex4.expected', 'r')
+        expected = f.read().strip()
+        expected = expected.split('\n')
+        f.close()
+
+        grade = 0
+        wrong = 0
+        for (exp, out) in zip(expected, output):
+            exp = exp.strip()
+            out = out.strip()
+            if exp == out:
+                grade += 35 / 6
+            else:
+                wrong += 1
+        if wrong == 6:
+            return (0, utils.failed('all tests failed...'), '')
+        elif wrong != 0:
+            return (round(grade), utils.incomplete('some tests failed...'), '')
+        else:
+            return (35, utils.passed(), '')
     except subprocess.TimeoutExpired:
         return (0, utils.failed('TIMEOUT'), '')
     except Exception as e:
@@ -139,23 +185,27 @@ def check_lfsr():
 
 
 def lab1_c():
-    not_found = utils.expected_files(['./ex2/flip_bit.c', './ex2/flip_bit.c', './ex2/flip_bit.c', './ex3/lfsr_calculate.c'])
+    not_found = utils.expected_files(['./ex2/flip_bit.c', './ex2/flip_bit.c', './ex2/flip_bit.c', './ex3/lfsr_calculate.c', './ex4/concat_bits.c'])
 
     if len(not_found) == 0:
         table = []
         
         bitops = check_bitops()
-        table.append(['2. bit_ops', bitops[0], bitops[1]])
+        table.append(['1. bit_ops', bitops[0], bitops[1]])
         lfsr = check_lfsr()
-        table.append(['3. lfsr', lfsr[0], lfsr[1]])
+        table.append(['2. lfsr', lfsr[0], lfsr[1]])
+        concatbits = check_concatbits()
+        table.append(['3. concat_bits', concatbits[0], concatbits[1]])
         
         grade = 0
         grade += bitops[0]
         grade += lfsr[0]
+        grade += concatbits[0]
 
         errors = ''
         errors += '\n' + utils.create_error('bit_ops', bitops[2])
         errors += '\n' + utils.create_error('lfsr', lfsr[2])
+        errors += '\n' + utils.create_error('concat_bits', concatbits[2])
 
         errors = errors.strip()
         grade = min(grade, 100)

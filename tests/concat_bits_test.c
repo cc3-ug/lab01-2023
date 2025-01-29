@@ -10,11 +10,12 @@ void test_concat_bits(unsigned x, unsigned len_x, unsigned y, unsigned len_y, un
 }
 
 int main(int argc, const char * argv[]) {
-  printf("\nTesting concat_bits()\n\n");
   test_concat_bits(0x00000044, 8, 0x000000cc, 8, 0x000044cc);
   test_concat_bits(0x00000044, 4, 0x000000cc, 4, 0x0000004c);
   test_concat_bits(0x000000cc, 8, 0x00000044, 8, 0xffffcc44);
   test_concat_bits(0x000000cc, 4, 0x00000044, 4, 0xffffffc4);
+  test_concat_bits(0x000000aa, 8, 0x0000cccc, 16, 0xffaacccc);
+  test_concat_bits(0x00000066, 6, 0xfffffccc, 10, 0xffff98cc);
   printf("\n");
   return 0;
 }
