@@ -1,7 +1,3 @@
-cp grading/Makefile .
-cp grading/*.c .
-cp grading/*.expected .
-
 {
   title() {
     printf "   ___       __                        __       \n"

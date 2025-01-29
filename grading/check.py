@@ -3,8 +3,6 @@ import resource
 import subprocess
 from pycparser import c_ast
 
-
-
 # 195 MiB of memory
 BYTES = 195 * 1024 * 1024
 
@@ -46,36 +44,6 @@ class LoopCondVisitor(c_ast.NodeVisitor):
     def reset(self):
         self.found = False
 # bit_ops
-
-
-def check_eccentric():
-    try:
-        task = utils.make(target='test_eccentric')
-        if task.returncode != 0:
-            return (0, utils.failed('compilation error'), task.stderr.decode().strip())
-        task = utils.execute(cmd=['./test_eccentric'], timeout=15)
-        if task.returncode != 0:
-            return (0, utils.failed('runtime error'), task.stderr.decode().strip())
-        # Output
-        output = task.stdout.decode().strip()
-        expected = 'V0 OK\nV1 OK\nV2 OK\nV3 OK'
-        expected = expected.split('\n')
-        output = output.split('\n')
-        grade = 0
-        wrong = 0
-        for (exp, out) in zip(expected, output):
-            exp = exp.strip()
-            out = out.strip()
-            if exp == out:
-                grade += 20/4
-            else:
-                wrong += 1
-        return (round(grade), utils.passed() if wrong == 0 else utils.incomplete('some answers are wrong...'), '')
-    except subprocess.TimeoutExpired:
-        return (0, utils.failed('TIMEOUT'), '')
-    except Exception as e:
-        print(e)
-        return (0, utils.failed('memory limit exceeded'), '')
 
 # checks bit ops
 def check_bitops():
@@ -171,25 +139,21 @@ def check_lfsr():
 
 
 def lab1_c():
-    not_found = utils.expected_files(['./eccentric.c', './ex2/flip_bit.c', './ex2/flip_bit.c', './ex2/flip_bit.c', './ex3/lfsr_calculate.c'])
+    not_found = utils.expected_files(['./ex2/flip_bit.c', './ex2/flip_bit.c', './ex2/flip_bit.c', './ex3/lfsr_calculate.c'])
 
     if len(not_found) == 0:
         table = []
         
-        eccentric = check_eccentric()
-        table.append(['1. eccentric', eccentric[0], eccentric[1]])
         bitops = check_bitops()
         table.append(['2. bit_ops', bitops[0], bitops[1]])
         lfsr = check_lfsr()
         table.append(['3. lfsr', lfsr[0], lfsr[1]])
         
         grade = 0
-        grade += eccentric[0]
         grade += bitops[0]
         grade += lfsr[0]
 
         errors = ''
-        errors += utils.create_error('eccentric', eccentric[2])
         errors += '\n' + utils.create_error('bit_ops', bitops[2])
         errors += '\n' + utils.create_error('lfsr', lfsr[2])
 

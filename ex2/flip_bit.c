@@ -2,13 +2,10 @@
 
 // Flip the nth bit of the value of a.
 // Assume 0 <= n <= 31
-void flip_bit(unsigned * x, unsigned n) {
-  unsigned a = *x;
-
+void flip_bit(unsigned *x, unsigned n) {
 
   // YOUR CODE HERE
-  // When you finish, put the result back in a
+  // We want to modify the original value
+  // therefore, we use a pointer
 
-
-  *x = a;
 }
