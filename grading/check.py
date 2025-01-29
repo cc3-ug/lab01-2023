@@ -55,15 +55,15 @@ def check_bitops():
         # check loops
         v = LoopCondVisitor()
         # flip_bit
-        v.visit(utils.find_func(utils.parse_c('ex2/flip_bit'), 'flip_bit'))
+        v.visit(utils.find_func(utils.parse_c('ex1/flip_bit'), 'flip_bit'))
         if v.found:
             return (0, utils.failed('[flip_bit] don\'t use loops/conds please... ¯\\_(⊙︿⊙)_/¯'), '')
         # get_bit
-        v.visit(utils.find_func(utils.parse_c('ex2/get_bit'), 'get_bit'))
+        v.visit(utils.find_func(utils.parse_c('ex1/get_bit'), 'get_bit'))
         if v.found:
             return (0, utils.failed('[get_bit] don\'t use loops/conds please... ¯\\_(⊙︿⊙)_/¯'), '')
         # set_bit
-        v.visit(utils.find_func(utils.parse_c('ex2/set_bit'), 'set_bit'))
+        v.visit(utils.find_func(utils.parse_c('ex1/set_bit'), 'set_bit'))
         if v.found:
             return (0, utils.failed('[set_bit] don\'t use loops/conds please... ¯\\_(⊙︿⊙)_/¯'), '')
         # run tests
@@ -73,7 +73,7 @@ def check_bitops():
         # Output
         output = task.stdout.decode().strip().split('\n')
 
-        f = open('ex2.expected', 'r')
+        f = open('ex1.expected', 'r')
         expected = f.read().strip()
         expected = expected.split('\n')
         f.close()
@@ -112,7 +112,7 @@ def check_lfsr():
         # check loops
         v = LoopCondVisitor()
         # flip_bit
-        v.visit(utils.find_func(utils.parse_c('ex3/lfsr_calculate'), 'lfsr_calculate'))
+        v.visit(utils.find_func(utils.parse_c('ex2/lfsr_calculate'), 'lfsr_calculate'))
         if v.found:
             return (0, utils.failed('don\'t use loops/conds please... ¯\\_(⊙︿⊙)_/¯'), '')
         # run tests
@@ -121,7 +121,7 @@ def check_lfsr():
             return (0, utils.failed('runtime error'), task.stderr.decode().strip())
         # Output
         output = task.stdout.decode().strip()
-        f = open('ex3.expected', 'r')
+        f = open('ex2.expected', 'r')
         expected = f.read().strip()
         f.close()
         for line1, line2 in zip(output.split('\n'), expected.split('\n')):
@@ -156,7 +156,7 @@ def check_concatbits():
         # Output
         output = task.stdout.decode().strip().split('\n')
 
-        f = open('ex4.expected', 'r')
+        f = open('ex3.expected', 'r')
         expected = f.read().strip()
         expected = expected.split('\n')
         f.close()
@@ -185,7 +185,7 @@ def check_concatbits():
 
 
 def lab1_c():
-    not_found = utils.expected_files(['./ex2/flip_bit.c', './ex2/flip_bit.c', './ex2/flip_bit.c', './ex3/lfsr_calculate.c', './ex4/concat_bits.c'])
+    not_found = utils.expected_files(['./ex1/flip_bit.c', './ex1/flip_bit.c', './ex1/flip_bit.c', './ex2/lfsr_calculate.c', './ex3/concat_bits.c'])
 
     if len(not_found) == 0:
         table = []

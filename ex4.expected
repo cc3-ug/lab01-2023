@@ -1,6 +1,0 @@
-concat_bits(0x00000044, 8, 0x000000cc, 8): 0x000044cc, correct
-concat_bits(0x00000044, 4, 0x000000cc, 4): 0x0000004c, correct
-concat_bits(0x000000cc, 8, 0x00000044, 8): 0xffffcc44, correct
-concat_bits(0x000000cc, 4, 0x00000044, 4): 0xffffffc4, correct
-concat_bits(0x000000aa, 8, 0x0000cccc, 16): 0xffaacccc, correct
-concat_bits(0x00000066, 6, 0xfffffccc, 10): 0xffff98cc, correct

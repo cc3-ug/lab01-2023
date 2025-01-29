@@ -1,26 +1,6 @@
-My number is: 1
-My number is: 5185
-My number is: 38801
-My number is: 52819
-My number is: 21116
-My number is: 54726
-My number is: 26552
-My number is: 46916
-My number is: 41728
-My number is: 26004
-My number is: 62850
-My number is: 40625
-My number is: 647
-My number is: 12837
-My number is: 7043
-My number is: 26003
-My number is: 35845
-My number is: 61398
-My number is: 42863
-My number is: 57133
-My number is: 59156
-My number is: 13312
-My number is: 16285
- ... etc etc ...
-Got 65535 numbers before cycling!
-Congratulations! It works!
+concat_bits(0x00000044, 8, 0x000000cc, 8): 0x000044cc, correct
+concat_bits(0x00000044, 4, 0x000000cc, 4): 0x0000004c, correct
+concat_bits(0x000000cc, 8, 0x00000044, 8): 0xffffcc44, correct
+concat_bits(0x000000cc, 4, 0x00000044, 4): 0xffffffc4, correct
+concat_bits(0x000000aa, 8, 0x0000cccc, 16): 0xffaacccc, correct
+concat_bits(0x00000066, 6, 0xfffffccc, 10): 0xffff98cc, correct

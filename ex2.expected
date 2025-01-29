@@ -1,27 +1,26 @@
-Testing get_bit()
-
-get_bit(0x0000004e,0): 0x00000000, correct
-get_bit(0x0000004e,1): 0x00000001, correct
-get_bit(0x0000004e,5): 0x00000000, correct
-get_bit(0x0000001b,3): 0x00000001, correct
-get_bit(0x0000001b,2): 0x00000000, correct
-get_bit(0x0000001b,9): 0x00000000, correct
-
-Testing set_bit()
-
-set_bit(0x0000004e,2,0): 0x0000004a, correct
-set_bit(0x0000006d,0,0): 0x0000006c, correct
-set_bit(0x0000004e,2,1): 0x0000004e, correct
-set_bit(0x0000006d,0,1): 0x0000006d, correct
-set_bit(0x0000004e,9,0): 0x0000004e, correct
-set_bit(0x0000006d,4,0): 0x0000006d, correct
-set_bit(0x0000004e,9,1): 0x0000024e, correct
-set_bit(0x0000006d,7,1): 0x000000ed, correct
-
-Testing flip_bit()
-
-flip_bit(0x0000004e,0): 0x0000004f, correct
-flip_bit(0x0000004e,1): 0x0000004c, correct
-flip_bit(0x0000004e,2): 0x0000004a, correct
-flip_bit(0x0000004e,5): 0x0000006e, correct
-flip_bit(0x0000004e,9): 0x0000024e, correct
+My number is: 1
+My number is: 5185
+My number is: 38801
+My number is: 52819
+My number is: 21116
+My number is: 54726
+My number is: 26552
+My number is: 46916
+My number is: 41728
+My number is: 26004
+My number is: 62850
+My number is: 40625
+My number is: 647
+My number is: 12837
+My number is: 7043
+My number is: 26003
+My number is: 35845
+My number is: 61398
+My number is: 42863
+My number is: 57133
+My number is: 59156
+My number is: 13312
+My number is: 16285
+ ... etc etc ...
+Got 65535 numbers before cycling!
+Congratulations! It works!
