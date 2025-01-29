@@ -167,7 +167,7 @@ def check_concatbits():
             exp = exp.strip()
             out = out.strip()
             if exp == out:
-                grade += 35 / 6
+                grade += 35 / 8
             else:
                 wrong += 1
         if wrong == 6:

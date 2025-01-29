@@ -16,6 +16,8 @@ int main(int argc, const char * argv[]) {
   test_concat_bits(0x000000cc, 4, 0x00000044, 4, 0xffffffc4);
   test_concat_bits(0x000000aa, 8, 0x0000cccc, 16, 0xffaacccc);
   test_concat_bits(0x00000066, 6, 0xfffffccc, 10, 0xffff98cc);
+  test_concat_bits(0x87654321, 12, 0x12345678, 12, 0x00321678);
+  test_concat_bits(0x87654321, 16, 0x12345678, 16, 0x43215678);
   printf("\n");
   return 0;
 }
