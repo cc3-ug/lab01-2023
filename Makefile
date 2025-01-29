@@ -21,8 +21,8 @@ EX1_CONV_SRC=$(EX1_SRC:.c=_conv.c)
 EX2_CONV_SRC=$(EX2_SRC:.c=_conv.c)
 CONV=$(EX1_CONV_SRC) $(EX2_CONV_SRC)
 
-EX1_OBJ=$(EX2_SRC:.c=.o)
-EX2_OBJ=$(EX3_SRC:.c=.o)
+EX1_OBJ=$(EX1_SRC:.c=.o)
+EX2_OBJ=$(EX2_SRC:.c=.o)
 OBJ=$(EX1_OBJ) $(EX2_OBJ)
 
 bit_ops: $(EX1_OBJ)
