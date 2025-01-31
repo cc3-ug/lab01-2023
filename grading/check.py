@@ -84,7 +84,7 @@ def check_bitops():
             exp = exp.strip()
             out = out.strip()
             if exp == out:
-                grade += 35 / 19
+                grade += 35 / 27
             else:
                 wrong += 1
         if wrong == 19:
